@@ -1,14 +1,22 @@
 package frontend;
 
+import backend.Backend;
+
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+@Component
+@Controller
 @RestController
-public class HPCController {
+public class HPCController{
+	
+	private Backend m_backend = new Backend();
 
-    @RequestMapping("/greeting")
+    @RequestMapping("/state")
     public String hello() {
-        return "Hello World";
+        return m_backend.stateCheck();
     }
 
 }
