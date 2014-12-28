@@ -30,7 +30,8 @@ repositories {
   }
 
 dependencies {
-  compile 'org.scalanlp:jcuda:0.5.5'
+  // compile 'org.scalanlp:jcuda:0.5.5'
+  compile 'org.jocl:jocl:0.1.9'
   compile 'org.springframework.boot:spring-boot-starter-web'
   testCompile group: 'junit', name: 'junit', version: '4.+'
 }
