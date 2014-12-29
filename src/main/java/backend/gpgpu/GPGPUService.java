@@ -7,9 +7,9 @@ public class GPGPUService {
 	public String stateCheck()
 	{
 		Prototype ptt = new Prototype();
-		ptt.run();
+		boolean passed = ptt.run();
 		
-		return "all upp and running";
+		return "Test "+(passed?"PASSED":"FAILED");
 	}
 
 }
