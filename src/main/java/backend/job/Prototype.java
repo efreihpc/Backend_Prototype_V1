@@ -4,7 +4,7 @@ import static org.jocl.CL.*;
 
 import org.jocl.*;
 
-public class Prototype {
+public class Prototype implements Runnable{
 	
     private static String programSource =
             "__kernel void "+
@@ -16,7 +16,7 @@ public class Prototype {
             "    c[gid] = a[gid] * b[gid];"+
             "}";
 	
-	public boolean run()
+	public void run()
 	{
         // Create input- and output data 
         int n = 10;
@@ -139,8 +139,11 @@ public class Prototype {
                 break;
             }
         }
-        
-        return passed;
+        System.out.println("Test "+(passed?"PASSED":"FAILED"));
+        if (n <= 10)
+        {
+            System.out.println("Result: "+java.util.Arrays.toString(dstArray));
+        }
         
 	}
 

@@ -1,14 +1,26 @@
 package backend;
 
-import backend.gpgpu.GPGPUService;
+import org.springframework.core.task.TaskExecutor;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
+
+import backend.job.Prototype;
 
 public class Backend {
 	
-	private GPGPUService m_gpuProcessor = new GPGPUService();
+	private TaskExecutor m_taskExecutor;
+	private ApplicationContext m_context;
 	
-	public String stateCheck()
+	public Backend()
 	{
-		return m_gpuProcessor.stateCheck();
+		m_context = new ClassPathXmlApplicationContext("Spring-Config.xml");
+	    m_taskExecutor = (ThreadPoolTaskExecutor) m_context.getBean("taskExecutor");
+	}
+	
+	public void stateCheck()
+	{
+		m_taskExecutor.execute(new Prototype());
 	}
 
 }

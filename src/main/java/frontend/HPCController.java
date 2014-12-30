@@ -16,7 +16,8 @@ public class HPCController{
 
     @RequestMapping("/state")
     public String hello() {
-        return m_backend.stateCheck();
+        m_backend.stateCheck();
+        return "Executed test";
     }
 
 }
