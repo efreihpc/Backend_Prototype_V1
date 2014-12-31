@@ -1,10 +1,10 @@
-package backend.job;
+package backend.model;
 
 import static org.jocl.CL.*;
 
 import org.jocl.*;
 
-public class Prototype implements Runnable{
+public class Prototype extends Job{
 	
     private static String programSource =
             "__kernel void "+
@@ -15,6 +15,11 @@ public class Prototype implements Runnable{
             "    int gid = get_global_id(0);"+
             "    c[gid] = a[gid] * b[gid];"+
             "}";
+    
+    public Prototype()
+    {
+    	this.setName("Prototype");
+    }
 	
 	public void run()
 	{
