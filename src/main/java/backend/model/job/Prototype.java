@@ -6,9 +6,12 @@ import javax.persistence.Entity;
 
 import org.jocl.*;
 
+import com.fasterxml.jackson.annotation.JsonTypeName;
+
 import backend.model.Job;
 
 @Entity
+@JsonTypeName("Prototype")
 public class Prototype extends Job{
 	
     private static String programSource =

@@ -6,8 +6,21 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonSubTypes.Type;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.fasterxml.jackson.annotation.JsonTypeInfo.*;
+
+import backend.model.job.Prototype;
+
 @Entity
 @Inheritance
+@JsonTypeInfo(  
+	    use = JsonTypeInfo.Id.NAME,  
+	    include = JsonTypeInfo.As.PROPERTY,  
+	    property = "type")  
+@JsonSubTypes({  
+    @Type(value = Prototype.class, name = "Prototype") })  
 public abstract class Job implements Runnable {
 	
     @Id

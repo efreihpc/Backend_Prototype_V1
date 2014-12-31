@@ -5,7 +5,6 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
-import backend.configuration.AppConfig;
 import backend.model.Job;
 import backend.model.JobRepository;
 import backend.model.job.Prototype;
@@ -32,6 +31,11 @@ public class Backend {
 	{
 		m_jobRepository.save(job);
 		m_taskExecutor.execute(job);
+	}
+	
+	public Iterable<Job> getAllJobs()
+	{
+		return m_jobRepository.findAll();
 	}
 
 }
