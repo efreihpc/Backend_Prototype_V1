@@ -1,9 +1,14 @@
-package backend.model;
+package backend.model.job;
 
 import static org.jocl.CL.*;
 
+import javax.persistence.Entity;
+
 import org.jocl.*;
 
+import backend.model.Job;
+
+@Entity
 public class Prototype extends Job{
 	
     private static String programSource =

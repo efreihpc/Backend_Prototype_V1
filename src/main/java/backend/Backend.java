@@ -8,7 +8,7 @@ import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import backend.configuration.AppConfig;
 import backend.model.Job;
 import backend.model.JobRepository;
-import backend.model.Prototype;
+import backend.model.job.Prototype;
 
 public class Backend {
 	
