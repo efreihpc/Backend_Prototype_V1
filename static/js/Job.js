@@ -26,7 +26,7 @@ function getAllJobs()
       });
       $( "#JobIndex" ).replaceWith($( "<ul/>", {
         "class": "media-list",
-        "id": "ScheduledJobs",
+        "id": "JobIndex",
         html: items.join( "" )
       }));
     });
