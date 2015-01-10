@@ -1,9 +1,19 @@
 $(document).ready(function(){
-  $("#Index").submit(function() { return false; });
-  $("#Index #Submit").click(function(){
-	  getAllJobs();
-  });
+	refreshJobIndex();
+	$("#Index").submit(function() { return false; });
+	$("#Index #Refresh").click(function(){
+		refreshJobIndex();
+	});
+	$("#Index #Check").click(function(){
+		addCheckStatusJob();
+		refreshJobIndex();
+	});
 });
+
+function refreshJobIndex()
+{
+	getAllJobs();
+}
 
 function getAllJobs()
 {
@@ -20,4 +30,9 @@ function getAllJobs()
         html: items.join( "" )
       }));
     });
+}
+
+function addCheckStatusJob()
+{
+	  $.getJSON("http://localhost:8080/state");
 }
