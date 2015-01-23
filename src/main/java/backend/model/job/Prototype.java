@@ -152,7 +152,8 @@ public class Prototype extends Job{
                 break;
             }
         }
-        System.out.println("Test "+(passed?"PASSED":"FAILED"));
+
+        this.results.put("Test Result", (passed?"PASSED":"FAILED"));
         if (n <= 10)
         {
             System.out.println("Result: "+java.util.Arrays.toString(dstArray));

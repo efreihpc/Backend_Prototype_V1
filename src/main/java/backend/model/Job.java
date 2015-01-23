@@ -1,5 +1,7 @@
 package backend.model;
 
+import java.util.HashMap;
+
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.GeneratedValue;
@@ -28,6 +30,7 @@ public abstract class Job implements Runnable {
     private long id;
 
     private String name;
+    protected HashMap<String, String> results = new HashMap<String, String>();
     
     public long getId()
     {
