@@ -24,7 +24,10 @@ public class Backend {
 	
 	public void stateCheck()
 	{
-		addJob(new Prototype());
+		Prototype job = new Prototype(m_taskExecutor);
+		PersistJob persist = new PersistJob(m_taskExecutor, m_jobRepository, job);
+		job.addSecondaryJob(persist);
+		addJob(job);
 	}
 	
 	public void addJob(Job job)

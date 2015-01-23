@@ -5,6 +5,7 @@ import static org.jocl.CL.*;
 import javax.persistence.Entity;
 
 import org.jocl.*;
+import org.springframework.core.task.TaskExecutor;
 
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
@@ -26,10 +27,16 @@ public class Prototype extends Job{
     
     public Prototype()
     {
+    	
+    }
+    
+    public Prototype(TaskExecutor executor)
+    {
+    	super(executor);
     	this.setName("Prototype");
     }
 	
-	public void run()
+	public void execute()
 	{
         // Create input- and output data 
         int n = 10;
@@ -153,10 +160,10 @@ public class Prototype extends Job{
             }
         }
 
-        this.results.put("Test Result", (passed?"PASSED":"FAILED"));
+        addResult("Test Result", (passed?"PASSED":"FAILED"));
         if (n <= 10)
         {
-            System.out.println("Result: "+java.util.Arrays.toString(dstArray));
+            addResult("Result", java.util.Arrays.toString(dstArray));
         }
         
 	}
