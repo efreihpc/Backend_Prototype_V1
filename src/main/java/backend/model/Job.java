@@ -8,6 +8,8 @@ import javax.persistence.Inheritance;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Transient;
 
 import org.springframework.core.task.TaskExecutor;
@@ -34,7 +36,8 @@ public abstract class Job implements Runnable {
     private String name;
     private HashMap<String, String> results = new HashMap<String, String>();
 
-    @Transient
+	@OneToMany
+	@org.hibernate.annotations.Cascade(org.hibernate.annotations.CascadeType.ALL)
     private Vector<Job> secondaryJobs = new Vector<Job>();
     @Transient
     private TaskExecutor taskExecutor;

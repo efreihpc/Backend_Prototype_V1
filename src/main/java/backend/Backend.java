@@ -7,7 +7,8 @@ import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
 import backend.model.Job;
 import backend.model.JobRepository;
-import backend.model.job.PersistJob;
+import backend.model.job.Chain;
+import backend.model.job.Persist;
 import backend.model.job.Prototype;
 
 public class Backend {
@@ -26,9 +27,19 @@ public class Backend {
 	public void stateCheck()
 	{
 		Prototype job = new Prototype(m_taskExecutor);
-		PersistJob persist = new PersistJob(m_taskExecutor, m_jobRepository, job);
+		Persist persist = new Persist(m_taskExecutor, m_jobRepository, job);
 		job.addSecondaryJob(persist);
-		addJob(job);
+		
+		Prototype job2 = new Prototype(m_taskExecutor);
+		Persist persist2 = new Persist(m_taskExecutor, m_jobRepository, job);
+		job2.addSecondaryJob(persist2);
+		
+		Chain chainJob = new Chain(m_taskExecutor);
+		chainJob.add(job);
+		chainJob.add(job2);
+		
+		addJob(chainJob);
+		
 	}
 	
 	public void addJob(Job job)

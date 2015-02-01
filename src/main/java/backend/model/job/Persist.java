@@ -5,17 +5,17 @@ import org.springframework.core.task.TaskExecutor;
 import backend.model.Job;
 import backend.model.JobRepository;
 
-public class PersistJob extends Job implements Runnable {
+public class Persist extends Job implements Runnable {
 	
 	JobRepository repository;
 	Job jobToPersist;
 	
-	public PersistJob()
+	public Persist()
 	{
 		
 	}
 
-	public PersistJob(TaskExecutor executor, JobRepository repository, Job toPersist)
+	public Persist(TaskExecutor executor, JobRepository repository, Job toPersist)
 	{
 		super(executor);
 		this.repository = repository;
