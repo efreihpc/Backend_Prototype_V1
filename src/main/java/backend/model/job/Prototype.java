@@ -27,7 +27,7 @@ public class Prototype extends Job{
     
     public Prototype()
     {
-    	
+    	this.setName("Prototype");
     }
     
     public Prototype(TaskExecutor executor)

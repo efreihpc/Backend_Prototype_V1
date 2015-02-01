@@ -35,10 +35,27 @@ public class Persist extends Job implements Runnable {
 		this.jobToPersist = toPersist;
 	}
 	
+	public Persist(JobRepository repository, Job toPersist)
+	{
+		this.setName("Persist");
+		this.repository = repository;
+		this.jobToPersist = toPersist;
+	}
+	
 	@Override
 	public void execute() {
 		System.out.println("Persisting");
 		this.repository.save(this.jobToPersist);
+	}
+	
+	public void setJobToPersist(Job job)
+	{
+		jobToPersist = job;
+	}
+	
+	public JobRepository getRepository()
+	{
+		return repository;
 	}
 
 }

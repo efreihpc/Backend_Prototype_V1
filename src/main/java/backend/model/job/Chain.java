@@ -35,7 +35,7 @@ public class Chain extends Job {
 	}
 	
 	public void add(Job nextJob)
-	{
+	{		
 		if(lastJob == null)
 		{
 			lastJob = nextJob;

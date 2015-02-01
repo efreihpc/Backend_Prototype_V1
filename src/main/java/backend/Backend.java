@@ -26,15 +26,16 @@ public class Backend {
 	
 	public void stateCheck()
 	{
-		Prototype job = new Prototype(m_taskExecutor);
-		Persist persist = new Persist(m_taskExecutor, m_jobRepository, job);
+		Prototype job = new Prototype();
+		Persist persist = new Persist(m_jobRepository, job);
 		job.addSecondaryJob(persist);
+
 		
-		Prototype job2 = new Prototype(m_taskExecutor);
-		Persist persist2 = new Persist(m_taskExecutor, m_jobRepository, job);
+		Prototype job2 = new Prototype();
+		Persist persist2 = new Persist(m_jobRepository, job);
 		job2.addSecondaryJob(persist2);
 		
-		Chain chainJob = new Chain(m_taskExecutor);
+		Chain chainJob = new Chain();
 		chainJob.add(job);
 		chainJob.add(job2);
 		
@@ -44,6 +45,11 @@ public class Backend {
 	
 	public void addJob(Job job)
 	{
+		job.setTaskExecutor(m_taskExecutor);
+		
+		Persist persist = new Persist(m_taskExecutor, m_jobRepository, job);
+		job.addSecondaryJob(persist);
+		
 		m_jobRepository.save(job);
 		m_taskExecutor.execute(job);
 	}

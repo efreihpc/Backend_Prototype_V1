@@ -40,6 +40,7 @@ public abstract class Job implements Runnable {
 	@OneToMany
 	@org.hibernate.annotations.Cascade(org.hibernate.annotations.CascadeType.ALL)
     private List<Job> secondaryJobs = new Vector<Job>();
+	
     @Transient
     private TaskExecutor taskExecutor;
     
@@ -91,6 +92,9 @@ public abstract class Job implements Runnable {
     public void setTaskExecutor(TaskExecutor executor)
     {
     	this.taskExecutor = executor;
+    	for (Job job : secondaryJobs) {
+    		job.setTaskExecutor(executor);
+    	}
     }
     
     public TaskExecutor getTaskExecutor()
