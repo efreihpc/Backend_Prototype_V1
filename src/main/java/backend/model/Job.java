@@ -1,6 +1,7 @@
 package backend.model;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Vector;
 
 import javax.persistence.Entity;
@@ -38,7 +39,7 @@ public abstract class Job implements Runnable {
 
 	@OneToMany
 	@org.hibernate.annotations.Cascade(org.hibernate.annotations.CascadeType.ALL)
-    private Vector<Job> secondaryJobs = new Vector<Job>();
+    private List<Job> secondaryJobs = new Vector<Job>();
     @Transient
     private TaskExecutor taskExecutor;
     
